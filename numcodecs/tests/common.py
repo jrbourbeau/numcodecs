@@ -166,13 +166,14 @@ def check_repr(stmt):
     assert stmt == actual
 
 
-def check_backwards_compatibility(codec_id, arrays, codecs, precision=None, prefix=None):
+def check_backwards_compatibility(codec_id, arrays, codecs, precision=None, prefix=None, fixture_dir=None):
 
     # setup directory to hold data fixture
-    if prefix:
-        fixture_dir = os.path.join('fixture', codec_id, prefix)
-    else:
-        fixture_dir = os.path.join('fixture', codec_id)
+    if fixture_dir is None:
+        if prefix:
+            fixture_dir = os.path.join('fixture', codec_id, prefix)
+        else:
+            fixture_dir = os.path.join('fixture', codec_id)
     if not os.path.exists(fixture_dir):  # pragma: no cover
         os.makedirs(fixture_dir)
 
