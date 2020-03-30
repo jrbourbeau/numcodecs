@@ -54,7 +54,6 @@ class Pickle(Codec):
         if PY2:  # pragma: py3 no cover
             dec = pickle.load(StringIO(buf))
         else:  # pragma: py2 no cover
-            from numpy.core import multiarray
             dec = pickle.loads(buf)
 
         if out is not None:
